@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    {% if message %}
+      <p class='message'>{{ message | safe  }}</p>
+    {% endif %}
+    <form action="/submit" method="POST">
+      <div class="card p-5 m-3">
+
+        <div class="form-group">
+          <select name="pjm" class="form-control">
+          <option selected>Project Manager</option>
+            <option value="Ron Terpak">Ron Terpak</option>
+            <option value="Kent 'Coop' Cooper">Kent 'Coop' Cooper</option>
+            <option value="Mark Lancaster">Mark Lancaster</option>
+            <option value="Matt Varney">Matt Varney</option>
+            <option value="Justin Heiskill">Justin Heiskill</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="project">Project / Lot</label>
+          <input type="text" name="project" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" name="address" class="form-control" />
+        </div>
+
+      </div>
+
+      <div class="card m-5 p-5 w-50 mx-auto">
+        <label for="propType" class='mx-auto' style='font-size: 2rem;'>Is this a...</label>
+        <div class="d-flex justify-content-around">
+            <div>
+                <input type="radio" name='propType' value='nestProp' checked='checked'>
+                <label for="">Nest Property</label>
+            </div>
+            <div>
+                <input type="radio" name='propType' value='ynyl'>
+                <label for="">YNYL</label>
+            </div>
+        </div>
+        </div>
+      </div>
+      <!-- <div class="card m-3 p-5">
+        <label for="comments">Comments</label>
+        <textarea name="comments" id="" cols="30" rows="10"></textarea>
+      </div> -->
+      <div class='card m-3 p-5'>
+        <h1>Permitting and Setup</h1>
+        <div class="row">
+            <div class="col" width='1fr'>
+                <label for="building_and_zoning_permit">Building and Zoning Permits</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='building_and_zoning_permit' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                <label for="building_and_zoning_permit_comment">Comments</label>
+                <textarea rows="3" cols='20' name='building_and_zoning_permit_comment' class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="septic_permit">Septic Permit</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='septic_permit' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="septic_permit_comment">Comments</label>
+                    <textarea name="septic_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="well_permit">Well Permit</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='well_permit' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="well_permit_comment">Comments</label>
+                    <textarea name="well_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="dock_permit">Dock Permit</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='dock_permit' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="dock_permit_comment">Comments</label>
+                    <textarea name="dock_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="shoreline_permit">Shoreline Permit</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='shoreline_permit' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="shoreline_permit_comment">Comments</label>
+                    <textarea name="shoreline_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="hoa_app_fee">HOA Application Fee</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='hoa_app_fee' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="hoa_deposit_comment">Comments</label>
+                    <textarea name="hoa_deposit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="hoa_deposit">HOA Deposit</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='hoa_deposit' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="hoa_deposit_comment">Comments</label>
+                    <textarea name="hoa_deposit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <label for="surveying">Surveying</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='surveying' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="surveying_comment">Comments</label>
+                    <textarea name="surveying_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+
+      <div class="card m-3 p-5">
+        <h1>Grading</h1>
+        <div class="row">
+            <div class="col">
+                <label for="lot_clearing">lot_clearing</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='lot_clearing' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="lot_clearing_comment">Comments</label>
+                    <textarea name="lot_clearing_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="silt_fence">silt_fence</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='silt_fence' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="silt_fence_comment">Comments</label>
+                    <textarea name="silt_fence_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="lot_grading">lot_grading</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='lot_grading' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="lot_grading_comment">Comments</label>
+                    <textarea name="lot_grading_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="demolition">demolition</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='demolition' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="demolition_comment">Comments</label>
+                    <textarea name="demolition_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="temp_drive">temp_drive</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='temp_drive' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="temp_drive_comment">Comments</label>
+                    <textarea name="temp_drive_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="culvert_pipe">culvert_pipe</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='culvert_pipe' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="culvert_pipe_comment">Comments</label>
+                    <textarea name="culvert_pipe_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="soil_compaction_testing">soil_compaction_testing</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='soil_compaction_testing' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="soil_compaction_testing_comment">Comments</label>
+                    <textarea name="soil_compaction_testing_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="soil_compaction_eng">soil_compaction_eng</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='soil_compaction_eng' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="soil_compaction_eng_comment">Comments</label>
+                    <textarea name="soil_compaction_eng_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="card m-3 p-5">
+        <h1>Foundation</h1>
+
+        <div class="row">
+            <div class="col">
+                <label for="slab_gravel_fill">slab_gravel_fill</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='slab_gravel_fill' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="slab_gravel_fill_comment">Comments</label>
+                    <textarea name="slab_gravel_fill_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="foundation_grading">foundation_grading</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='foundation_grading' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="foundation_grading_comment">Comments</label>
+                    <textarea name="foundation_grading_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="foundation_overage">foundation_overage</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='foundation_overage' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="foundation_overage_comment">Comments</label>
+                    <textarea name="foundation_overage_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="footing_overage">footing_overage</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='footing_overage' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="footing_overage_comment">Comments</label>
+                    <textarea name="footing_overage_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="retaining_wall">retaining_wall</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='retaining_wall' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="retaining_wall_comment">Comments</label>
+                    <textarea name="retaining_wall_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+      
+      <div class="card m-3 p-5">
+        <h1>Sewer and Water</h1>
+        
+        <div class="row">
+            <div class="col">
+                <label for="water_tap_fee">water_tap_fee</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='water_tap_fee' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="water_tap_fee_comment">Comments</label>
+                    <textarea name="water_tap_fee_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="well">well</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='well' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="well_comment">Comments</label>
+                    <textarea name="well_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="sewer_tap_fee">sewer_tap_fee</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='sewer_tap_fee' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="sewer_tap_fee_comment">Comments</label>
+                    <textarea name="sewer_tap_fee_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="septic_system">septic_system</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='septic_system' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="septic_system_comment">Comments</label>
+                    <textarea name="septic_system_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="grinder_pump">grinder_pump</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='grinder_pump' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="grinder_pump_comment">Comments</label>
+                    <textarea name="grinder_pump_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+      <div class="card m-3 p-5">
+        <h1>Concrete</h1>
+        
+        <div class="row">
+            <div class="col">
+                <label for="driveway">driveway</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='driveway' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="driveway_comment">Comments</label>
+                    <textarea name="driveway_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="parking_pad">parking_pad</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='parking_pad' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="parking_pad_comment">Comments</label>
+                    <textarea name="parking_pad_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="sidewalks">sidewalks</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='sidewalks' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="sidewalks_comment">Comments</label>
+                    <textarea name="sidewalks_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="additional_flatwork">additional_flatwork</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='additional_flatwork' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="additional_flatwork_comment">Comments</label>
+                    <textarea name="additional_flatwork_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="pump_truck">pump_truck</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='pump_truck' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="pump_truck_comment">Comments</label>
+                    <textarea name="pump_truck_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="card m-3 p-5">
+        <h1>Framing / Mechanical</h1>
+        
+        <div class="row">
+            <div class="col">
+                <label for="generator_retnal">generator_retnal</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='generator_retnal' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="generator_retnal_comment">Comments</label>
+                    <textarea name="generator_retnal_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="fuel_supply">fuel_supply</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='fuel_supply' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="fuel_supply_comment">Comments</label>
+                    <textarea name="fuel_supply_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="card m-3 p-5">
+        <h1>Landscapping and Misc</h1>
+        
+        <div class="row">
+            <div class="col">
+                <label for="irrigation">irrigation</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='irrigation' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="irrigation_comment">Comments</label>
+                    <textarea name="irrigation_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="seed_sod">seed_sod</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='seed_sod' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="seed_sod_comment">Comments</label>
+                    <textarea name="seed_sod_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="shrubs">shrubs</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='shrubs' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="shrubs_comment">Comments</label>
+                    <textarea name="shrubs_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="final_grade">final_grade</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='final_grade' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="final_grade_comment">Comments</label>
+                    <textarea name="final_grade_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="pressure_wash">pressure_wash</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='pressure_wash' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="pressure_wash_comment">Comments</label>
+                    <textarea name="pressure_wash_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="mailbox">mailbox</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='mailbox' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="mailbox_comment">Comments</label>
+                    <textarea name="mailbox_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="street_cleaning">street_cleaning</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='street_cleaning' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="street_cleaning_comment">Comments</label>
+                    <textarea name="street_cleaning_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="dock">dock</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='dock' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="dock_comment">Comments</label>
+                    <textarea name="dock_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="shoreline">shoreline</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='shoreline' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="shoreline_comment">Comments</label>
+                    <textarea name="shoreline_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+
+        
+        
+      </div>
+      <div class="card m-3">
+        <h1>Contingency</h1>
+        <div class="row">
+            <div class="col">
+                <label for=""></label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" name='contingency' class="form-control">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="contingency_comment">Comments</label>
+                    <textarea name="contingency_comment" id="" cols="20" rows="3" class='form-control'></textarea>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- Email to you -->
+      <button class="submit">Submit</button>
+      <button class="submit">Submit</button>
+    </form>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
