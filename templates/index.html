@@ -15,10 +15,16 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body class='p-5'>
+        <div class='container-fluid mt-5 m-0 d-flex flex-column justify-content-center align-items-center'>
+            <img src="../static/images/nest-logo-brown-01.png" class='w-25' alt="">
+            <h3>Area Costs</h3>
+
+        </div>
     {% if message %}
       <p class='message'>{{ message | safe  }}</p>
     {% endif %}
+
     <form action="/submit" method="POST">
       <div class="card p-5 m-3">
 
@@ -70,10 +76,10 @@
                 <label for="building_and_zoning_permit">Building and Zoning Permits</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='building_and_zoning_permit' class="form-control">
+                    <input type="number" step='.01' name='building_and_zoning_permit' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                 <label for="building_and_zoning_permit_comment">Comments</label>
                 <textarea rows="3" cols='20' name='building_and_zoning_permit_comment' class="form-control"></textarea>
@@ -86,10 +92,10 @@
                 <label for="septic_permit">Septic Permit</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='septic_permit' class="form-control">
+                    <input type="number" step='.01' name='septic_permit' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="septic_permit_comment">Comments</label>
                     <textarea name="septic_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -102,10 +108,10 @@
                 <label for="well_permit">Well Permit</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='well_permit' class="form-control">
+                    <input type="number" step='.01' name='well_permit' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="well_permit_comment">Comments</label>
                     <textarea name="well_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -118,10 +124,10 @@
                 <label for="dock_permit">Dock Permit</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='dock_permit' class="form-control">
+                    <input type="number" step='.01' name='dock_permit' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="dock_permit_comment">Comments</label>
                     <textarea name="dock_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -134,10 +140,10 @@
                 <label for="shoreline_permit">Shoreline Permit</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='shoreline_permit' class="form-control">
+                    <input type="number" step='.01' name='shoreline_permit' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="shoreline_permit_comment">Comments</label>
                     <textarea name="shoreline_permit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -150,10 +156,10 @@
                 <label for="hoa_app_fee">HOA Application Fee</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='hoa_app_fee' class="form-control">
+                    <input type="number" step='.01' name='hoa_app_fee' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="hoa_deposit_comment">Comments</label>
                     <textarea name="hoa_deposit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -166,10 +172,10 @@
                 <label for="hoa_deposit">HOA Deposit</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='hoa_deposit' class="form-control">
+                    <input type="number" step='.01' name='hoa_deposit' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="hoa_deposit_comment">Comments</label>
                     <textarea name="hoa_deposit_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -182,10 +188,10 @@
                 <label for="surveying">Surveying</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='surveying' class="form-control">
+                    <input type="number" step='.01' name='surveying' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="surveying_comment">Comments</label>
                     <textarea name="surveying_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -199,13 +205,13 @@
         <h1>Grading</h1>
         <div class="row mb-4">
             <div class="col">
-                <label for="lot_clearing">lot_clearing</label>
+                <label for="lot_clearing">Lot Clearing</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='lot_clearing' class="form-control">
+                    <input type="number" step='.01' name='lot_clearing' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="lot_clearing_comment">Comments</label>
                     <textarea name="lot_clearing_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -215,13 +221,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="silt_fence">silt_fence</label>
+                <label for="silt_fence">Silt Fence</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='silt_fence' class="form-control">
+                    <input type="number" step='.01' name='silt_fence' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="silt_fence_comment">Comments</label>
                     <textarea name="silt_fence_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -231,13 +237,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="lot_grading">lot_grading</label>
+                <label for="lot_grading">Lot Grading</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='lot_grading' class="form-control">
+                    <input type="number" step='.01' name='lot_grading' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="lot_grading_comment">Comments</label>
                     <textarea name="lot_grading_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -247,13 +253,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="demolition">demolition</label>
+                <label for="demolition">Demolition (Includes hauling off all structures)</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='demolition' class="form-control">
+                    <input type="number" step='.01' name='demolition' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="demolition_comment">Comments</label>
                     <textarea name="demolition_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -263,13 +269,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="temp_drive">temp_drive</label>
+                <label for="temp_drive">Temporary Drive Stone</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='temp_drive' class="form-control">
+                    <input type="number" step='.01' name='temp_drive' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="temp_drive_comment">Comments</label>
                     <textarea name="temp_drive_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -279,13 +285,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="culvert_pipe">culvert_pipe</label>
+                <label for="culvert_pipe">Culvert Pipe</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='culvert_pipe' class="form-control">
+                    <input type="number" step='.01' name='culvert_pipe' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="culvert_pipe_comment">Comments</label>
                     <textarea name="culvert_pipe_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -295,13 +301,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="soil_compaction_testing">soil_compaction_testing</label>
+                <label for="soil_compaction_testing">Soil Compaction Testing</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='soil_compaction_testing' class="form-control">
+                    <input type="number" step='.01' name='soil_compaction_testing' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="soil_compaction_testing_comment">Comments</label>
                     <textarea name="soil_compaction_testing_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -311,13 +317,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="soil_compaction_eng">soil_compaction_eng</label>
+                <label for="soil_compaction_eng">Soil Compaction Engineering and Remediation</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='soil_compaction_eng' class="form-control">
+                    <input type="number" step='.01' name='soil_compaction_eng' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="soil_compaction_eng_comment">Comments</label>
                     <textarea name="soil_compaction_eng_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -331,13 +337,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="slab_gravel_fill">slab_gravel_fill</label>
+                <label for="slab_gravel_fill">Slab Gravel/Fill</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='slab_gravel_fill' class="form-control">
+                    <input type="number" step='.01' name='slab_gravel_fill' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="slab_gravel_fill_comment">Comments</label>
                     <textarea name="slab_gravel_fill_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -347,13 +353,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="foundation_grading">foundation_grading</label>
+                <label for="foundation_grading">Foundation Grading</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='foundation_grading' class="form-control">
+                    <input type="number" step='.01' name='foundation_grading' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="foundation_grading_comment">Comments</label>
                     <textarea name="foundation_grading_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -363,13 +369,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="foundation_overage">foundation_overage</label>
+                <label for="foundation_overage">Foundation - Overage</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='foundation_overage' class="form-control">
+                    <input type="number" step='.01' name='foundation_overage' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="foundation_overage_comment">Comments</label>
                     <textarea name="foundation_overage_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -379,13 +385,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="footing_overage">footing_overage</label>
+                <label for="footing_overage">Footing - Overage</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='footing_overage' class="form-control">
+                    <input type="number" step='.01' name='footing_overage' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="footing_overage_comment">Comments</label>
                     <textarea name="footing_overage_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -395,13 +401,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="retaining_wall">retaining_wall</label>
+                <label for="retaining_wall">Retaining Wall</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='retaining_wall' class="form-control">
+                    <input type="number" step='.01' name='retaining_wall' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="retaining_wall_comment">Comments</label>
                     <textarea name="retaining_wall_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -416,13 +422,13 @@
         
         <div class="row mb-4">
             <div class="col">
-                <label for="water_tap_fee">water_tap_fee</label>
+                <label for="water_tap_fee">Water Tap Fee</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='water_tap_fee' class="form-control">
+                    <input type="number" step='.01' name='water_tap_fee' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="water_tap_fee_comment">Comments</label>
                     <textarea name="water_tap_fee_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -432,13 +438,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="well">well</label>
+                <label for="well">Well</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='well' class="form-control">
+                    <input type="number" step='.01' name='well' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="well_comment">Comments</label>
                     <textarea name="well_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -448,13 +454,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="sewer_tap_fee">sewer_tap_fee</label>
+                <label for="sewer_tap_fee">Sewer Tap Fee</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='sewer_tap_fee' class="form-control">
+                    <input type="number" step='.01' name='sewer_tap_fee' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="sewer_tap_fee_comment">Comments</label>
                     <textarea name="sewer_tap_fee_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -464,13 +470,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="septic_system">septic_system</label>
+                <label for="septic_system">Septic System</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='septic_system' class="form-control">
+                    <input type="number" step='.01' name='septic_system' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="septic_system_comment">Comments</label>
                     <textarea name="septic_system_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -480,13 +486,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="grinder_pump">grinder_pump</label>
+                <label for="grinder_pump">Grinder Pump</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='grinder_pump' class="form-control">
+                    <input type="number" step='.01' name='grinder_pump' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="grinder_pump_comment">Comments</label>
                     <textarea name="grinder_pump_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -500,13 +506,13 @@
         
         <div class="row mb-4">
             <div class="col">
-                <label for="driveway">driveway</label>
+                <label for="driveway">Driveway</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='driveway' class="form-control">
+                    <input type="number" step='.01' name='driveway' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="driveway_comment">Comments</label>
                     <textarea name="driveway_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -516,13 +522,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="parking_pad">parking_pad</label>
+                <label for="parking_pad">Parking Pad</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='parking_pad' class="form-control">
+                    <input type="number" step='.01' name='parking_pad' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="parking_pad_comment">Comments</label>
                     <textarea name="parking_pad_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -532,13 +538,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="sidewalks">sidewalks</label>
+                <label for="sidewalks">Sidewalks</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='sidewalks' class="form-control">
+                    <input type="number" step='.01' name='sidewalks' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="sidewalks_comment">Comments</label>
                     <textarea name="sidewalks_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -548,13 +554,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="additional_flatwork">additional_flatwork</label>
+                <label for="additional_flatwork">Additional Flatwork</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='additional_flatwork' class="form-control">
+                    <input type="number" step='.01' name='additional_flatwork' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="additional_flatwork_comment">Comments</label>
                     <textarea name="additional_flatwork_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -564,13 +570,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="pump_truck">pump_truck</label>
+                <label for="pump_truck">Pump Truck(s)</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='pump_truck' class="form-control">
+                    <input type="number" step='.01' name='pump_truck' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="pump_truck_comment">Comments</label>
                     <textarea name="pump_truck_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -583,13 +589,13 @@
         
         <div class="row mb-4">
             <div class="col">
-                <label for="generator_retnal">generator_retnal</label>
+                <label for="generator_retnal">Generator Retnal</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='generator_retnal' class="form-control">
+                    <input type="number" step='.01' name='generator_retnal' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="generator_retnal_comment">Comments</label>
                     <textarea name="generator_retnal_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -599,13 +605,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="fuel_supply">fuel_supply</label>
+                <label for="fuel_supply">Fuel Supply</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='fuel_supply' class="form-control">
+                    <input type="number" step='.01' name='fuel_supply' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="fuel_supply_comment">Comments</label>
                     <textarea name="fuel_supply_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -618,13 +624,13 @@
         
         <div class="row mb-4">
             <div class="col">
-                <label for="irrigation">irrigation</label>
+                <label for="irrigation">Irrigation</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='irrigation' class="form-control">
+                    <input type="number" step='.01' name='irrigation' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="irrigation_comment">Comments</label>
                     <textarea name="irrigation_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -634,13 +640,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="seed_sod">seed_sod</label>
+                <label for="seed_sod">Seed/Sod</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='seed_sod' class="form-control">
+                    <input type="number" step='.01' name='seed_sod' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="seed_sod_comment">Comments</label>
                     <textarea name="seed_sod_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -650,13 +656,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="shrubs">shrubs</label>
+                <label for="shrubs">Shrubs</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='shrubs' class="form-control">
+                    <input type="number" step='.01' name='shrubs' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="shrubs_comment">Comments</label>
                     <textarea name="shrubs_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -666,13 +672,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="final_grade">final_grade</label>
+                <label for="final_grade">Final Grading</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='final_grade' class="form-control">
+                    <input type="number" step='.01' name='final_grade' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="final_grade_comment">Comments</label>
                     <textarea name="final_grade_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -682,13 +688,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="pressure_wash">pressure_wash</label>
+                <label for="pressure_wash">Pressure Wash</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='pressure_wash' class="form-control">
+                    <input type="number" step='.01' name='pressure_wash' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="pressure_wash_comment">Comments</label>
                     <textarea name="pressure_wash_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -698,13 +704,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="mailbox">mailbox</label>
+                <label for="mailbox">Mailbox</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='mailbox' class="form-control">
+                    <input type="number" step='.01' name='mailbox' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="mailbox_comment">Comments</label>
                     <textarea name="mailbox_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -714,13 +720,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="street_cleaning">street_cleaning</label>
+                <label for="street_cleaning">Street Cleaning</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='street_cleaning' class="form-control">
+                    <input type="number" step='.01' name='street_cleaning' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="street_cleaning_comment">Comments</label>
                     <textarea name="street_cleaning_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -730,13 +736,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="dock">dock</label>
+                <label for="dock">Dock</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='dock' class="form-control">
+                    <input type="number" step='.01' name='dock' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="dock_comment">Comments</label>
                     <textarea name="dock_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -746,13 +752,13 @@
 
         <div class="row mb-4">
             <div class="col">
-                <label for="shoreline">shoreline</label>
+                <label for="shoreline">Shoreline</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='shoreline' class="form-control">
+                    <input type="number" step='.01' name='shoreline' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="shoreline_comment">Comments</label>
                     <textarea name="shoreline_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -763,17 +769,17 @@
         
         
       </div>
-      <div class="card m-3">
+      <div class="card m-3 p-5">
         <h1>Contingency</h1>
         <div class="row mb-4">
             <div class="col">
                 <label for=""></label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" name='contingency' class="form-control">
+                    <input type="number" step='.01' name='contingency' class="form-control">
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <label for="contingency_comment">Comments</label>
                     <textarea name="contingency_comment" id="" cols="20" rows="3" class='form-control'></textarea>
@@ -781,16 +787,19 @@
             </div>
         </div>
       </div>
-      <div class="card">
-        <h3>Would you like a copy emailed to you?</h3>
-        <select name="" id="">
-            <option value="">Yes</option>
-            <option value="">No</option>
+      <!-- <div class="card w-50 p-5 mx-auto">
+        <h3 class='mb-4'>Would you like a copy emailed to you?</h3>
+        <select name="email_copy" id="" class='w-50 mx-auto'>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
         </select>
-      </div>
-      <!-- Email to you -->
-      <button class="submit">Submit</button>
-      <button class="submit">Submit</button>
+        <div class='p-5 d-flex justify-content-center'>
+        </div>
+    </div> -->
+    <!-- <div class="container-fluid d-flex justify-content-center mt-5">
+        <input type='submit' class="btn btn-success w-50" value='Submit'>
+    </div> -->
+        <button class="submit btn btn-success">Submit</button>
     </form>
 
 
@@ -802,11 +811,5 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-    -->
   </body>
 </html>

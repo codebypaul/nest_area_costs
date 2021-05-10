@@ -2,21 +2,25 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 # from send_mail import send_mail
 from dotenv import load_dotenv
-from oauth2client.service_account import ServiceAccountCredentials
-from gspread_formatting import *
-import gspread
+# from oauth2client.service_account import ServiceAccountCredentials
+# import gspread
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+import xlsxwriter
 import os
 load_dotenv()
 
 
 # print(os.getenv('TEST'))
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/drive']
+# scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/drive']
 
-creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+# creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
 
-client = gspread.authorize(creds)
+# client = gspread.authorize(creds)
 
-sheet = client.open('Nest_Test').sheet1
+# sheet = client.open('Nest_Test').sheet1
 
 app = Flask(__name__)
 
@@ -32,6 +36,8 @@ else:
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
+
+# database
 
 class AreaCosts(db.Model):
     __tablename__ = 'area_costs'
@@ -147,6 +153,9 @@ class AreaCosts(db.Model):
         # contingency
         self.contingency = contingency
 
+# functions
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -211,6 +220,9 @@ def submit():
         shoreline = request.form['shoreline']
         # contingency
         contingency = request.form['contingency']
+        # email a copy
+        # email_copy = request.form['email_copy']
+        fields = ['building_and_zoning_permit','septic_permit','well_permit','dock_permit','shoreline_permit','hoa_app_fee','hoa_deposit','surveying','lot_clearing','silt_fence','lot_grading','demolition','temp_drive','culvert_pipe','soil_compaction_testing','soil_compaction_eng','slab_gravel_fill','foundation_grading','foundation_overage','footing_overage','retaining_wall','water_tap_fee','well','sewer_tap_fee','septic_system','grinder_pump','driveway','parking_pad','sidewalks','additional_flatwork','pump_truck','generator_retnal','fuel_supply','irrigation','seed_sod','shrubs','final_grade','pressure_wash','mailbox','street_cleaning','dock','shoreline','contingency']
 
         values = [building_and_zoning_permit,septic_permit,well_permit,dock_permit,shoreline_permit,hoa_app_fee,hoa_deposit,surveying,lot_clearing,silt_fence,lot_grading,demolition,temp_drive,culvert_pipe,soil_compaction_testing,soil_compaction_eng,slab_gravel_fill,foundation_grading,foundation_overage,footing_overage,retaining_wall,water_tap_fee,well,sewer_tap_fee,septic_system,grinder_pump,driveway,parking_pad,sidewalks,additional_flatwork,pump_truck,generator_retnal,fuel_supply,irrigation,seed_sod,shrubs,final_grade,pressure_wash,mailbox,street_cleaning,dock,shoreline,contingency]
 
@@ -224,20 +236,104 @@ def submit():
             db.session.add(data)
             db.session.commit()
 
-            sheet.update('B4',pjm)
-            sheet.update('B5',project)
-            sheet.update('B6',address)
+            # sheet.update('B4',pjm)
+            # sheet.update('B5',project)
+            # sheet.update('B6',address)
 
-            for x in range(len(values)):
-                sheet.update(f'C{start_cell}', values[x])
-                sheet.format(f'C{start_cell}',{
-                    'numberFormat':{
-                        'type':'CURRENCY',
-                        'pattern':'"$" #,##0.00'
-                    }
-                })
-                start_cell += 1
+            # for x in range(len(values)):
+            #     sheet.update(f'C{start_cell}', values[x])
+            #     sheet.format(f'C{start_cell}',{
+            #         'numberFormat':{
+            #             'type':'CURRENCY',
+            #             'pattern':'"$" #,##0.00'
+            #         }
+            #     })
+            #     start_cell += 1
         #     send_mail(pjm,project,address,propType)
+
+            workbook=xlsxwriter.Workbook(f'{project}_Area_Costs.xlsx')
+            worksheet=workbook.add_worksheet()
+            
+            make_bold=workbook.add_format({'bold':True})
+            percent_format=workbook.add_format({'num_format': '0.00'})
+            def area_cost_template():
+                worksheet.write('A1','NEST HOMES',make_bold)
+                worksheet.write('A2','AREA COST ITEMS - FIELD WORKSHEET',make_bold)
+                worksheet.write('A4','Project Manager',make_bold)
+                worksheet.write('A5','PROJECT/LOT',make_bold)
+                worksheet.write('A6','ADDRESS',make_bold)
+                worksheet.write('D4','Buyer will be notified if overages exceeds $500 (PER LINE ITEM)',make_bold)
+                worksheet.write('C8','BUDGETED COST',make_bold)
+                worksheet.write('D8','MARKUP %',make_bold)
+                worksheet.write('E8','ALLOWANCE TO INCLUDE IN CONTRACT',make_bold)
+                worksheet.write('F8','ACTUAL COST',make_bold)
+                worksheet.write('G8','BILL TO CUSTOMER',make_bold)
+                worksheet.write('H8','COMMENTS',make_bold)
+                
+                merge_format = workbook.add_format({
+                    'bold':1,
+                    'align':'center',
+                    'valign':'center'
+                })
+                worksheet.merge_range('A9:A16','PERMITTING AND SETUP',merge_format)
+                worksheet.merge_range('A17:A24','GRADING',merge_format)
+                worksheet.merge_range('A25:A29','FOUNDATION',merge_format)
+                worksheet.merge_range('A30:A34','SEWER AND WATER',merge_format)
+                worksheet.merge_range('A35:A39','CONCRETE',merge_format)
+                worksheet.merge_range('A40:A41','FRAMING/MECHANICAL',merge_format)
+                worksheet.merge_range('A42:A50','LANDSCAPING AND MISC',merge_format)
+                worksheet.write('A9','CONTINGENCY',make_bold)
+                for i in range(len(values)):
+                    worksheet.write(f'B{i+9}',fields[i])
+                    worksheet.write(f'D{i+9}',1.18,percent_format)
+                    i+=1
+                worksheet.write('B53','TOTAL AREA COST ALLOWANCES',make_bold)
+
+            def input_values(values):
+                for i in range(len(values)):
+                    worksheet.write(f'C{i+9}',float(values[i]))
+                    
+
+            def run_formulas():
+                worksheet.write_formula('C53','=SUM(C9:C51)')
+                worksheet.write_formula('E53','=SUM(E9:E51)')
+                worksheet.write_formula('G53','=SUM(G9:G51)')
+
+                for i in range(len(values)):
+                    worksheet.write_formula(f'E{i+9}',f'=C{i+9}*1.18')
+                    worksheet.write_formula(f'G{i+9}',f'=C{i+9}*1.18')
+                    i+=1
+
+            area_cost_template()    
+            input_values(values)
+            run_formulas()
+            workbook.close()
+
+            SERVER = "smtp-mail.outlook.com"
+            FROM = "purchasing@nesthomes.com"
+            TO = ["pwilliams@nesthomes.com"] # must be a list
+
+            SUBJECT = f'{project} Area Costs'
+
+            # Prepare actual message
+            message = f'Subject: {SUBJECT}\nArea costs for {project}'
+
+            # Send the mail
+            file_name=f'{project}_Area_Costs.xlsx'
+            msg = MIMEMultipart()
+            fp = open(file_name, 'rb')
+            part = MIMEBase('application','vnd.ms-excel')
+            part.set_payload(fp.read())
+            fp.close()
+            encoders.encode_base64(part)
+            part.add_header('Content-Disposition', 'attachment', filename='Area Cost')
+            msg.attach(part)
+            server = smtplib.SMTP(SERVER,587)
+            server.starttls()
+            server.login('purchasing@nesthomes.com','N3stPurch4s1ng')
+            server.sendmail(FROM, TO, msg.as_string())
+            server.quit()
+
             return render_template('success.html')
 
         return render_template('index.html', message=f'This property already exists.')
@@ -350,3 +446,5 @@ if __name__ == '__main__':
 # shoreline_comment
 
 # print(f"{pjm}\n{project}\n{address}\n{propType}\n{building_and_zoning_permit}\n{septic_permit}\n{well_permit}\n{dock_permit}{shoreline_permit}\n{hoa_app_fee}\n{hoa_deposit}\n{surveying}\n{lot_clearing}\n{silt_fence}\n{lot_grading}\n{demolition}\n{temp_drive}\n{culvert_pipe}\n{soil_compaction_testing}\n{soil_compaction_eng}\n{slab_gravel_fill}\n{foundation_grading}\n{foundation_overage}\n{footing_overage}\n{retaining_wall}\n{water_tap_fee}\n{well}\n{sewer_tap_fee}\n{septic_system}\n{grinder_pump}\n{driveway}\n{parking_pad}\n{sidewalks}\n{additional_flatwork}\n{pump_truck}\n{generator_retnal}\n{fuel_supply}\n{irrigation}\n{seed_sod}\n{shrubs}\n{pressure_wash}\n{mailbox}\n{street_cleaning}\n{dock}\n{shoreline}\n{contingency}")
+
+# f'NEST HOMES - HOMEBUILDING/JOB SPECIFIC INFO/{project[:2]//AREA COST'
